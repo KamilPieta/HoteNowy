@@ -1,0 +1,4 @@
+projekt_hotel_hotel:
+    resource: "@ProjektHotelHotelBundle/Resources/config/routing.yml"
+    prefix:   /
+
