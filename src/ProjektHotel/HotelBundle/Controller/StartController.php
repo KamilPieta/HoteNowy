@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/start")
@@ -14,9 +15,8 @@ class StartController extends Controller{
 
     
     /**
-    * @Route("/index.html",
+    * @Route("/index",
      * name="hotel_glowna")
-     * 
      * 
     *
     * @Template  
@@ -26,7 +26,7 @@ class StartController extends Controller{
     }
     
     /**
-    * @Route("/galeria.html",
+    * @Route("/galeria",
      * name="hotel_galeria")
     *
     * @Template  
@@ -36,16 +36,51 @@ class StartController extends Controller{
     }
     
     /**
-    * @Route("/kontakt.html",
+    * @Route("/kontakt",
      * name="hotel_kontakt")
     *
     * @Template  
     */
-    public function kontaktAction(){
-         return array();
+    public function kontaktAction(Request $Request){
+        
+          $kontakt=$this->createFormBuilder()
+                
+                ->add('nick', 'text')
+                ->add('email', 'text')
+              ->add('wiadomosc', 'textarea')
+              ->add('potwierdz','submit')
+                ->getForm();
+        
+        
+        $kontakt->handleRequest($Request);
+        
+        if($kontakt->isValid()){
+           // $fromData=$kontakt->getData();
+        
+            
+           $message = \Swift_Message::newInstance()
+                   ->setSubject('wiadomosc do hotelu')
+                   ->setFrom(array($kontakt->get('email')->getData() => $kontakt->get('nick')->getName()))
+                   ->setTo(array('expiredmind93@gmail.com'=> 'Hotel Sielanka'))
+                   ->setBody(array($kontakt->get('wiadomosc')->getData()));
+                  
+                   
+                  
+                     $this->get('mailer')-> send($message);
+            
+            
+        }
+            
+        
+                
+            
+      return array(
+           'kontakt'=> $kontakt->createView(),
+           'fromData'=>  isset($fromData) ? $fromData : NULL,
+       );
     }
         /**
-    * @Route("/promocje.html",
+    * @Route("/promocje",
      * name="hotel_promocje")
     *
     * @Template  
@@ -54,7 +89,7 @@ class StartController extends Controller{
          return array();
     }
         /**
-    * @Route("/basen.html",
+    * @Route("/basen",
      * name="hotel_basen")
     *
     * @Template  
@@ -63,7 +98,7 @@ class StartController extends Controller{
          return array();
     }
      /**
-    * @Route("/cennik.html",
+    * @Route("/cennik",
      * name="hotel_cennik")
     *
     * @Template  
@@ -73,7 +108,7 @@ class StartController extends Controller{
     }
     
       /**
-    * @Route("/opinie.html",
+    * @Route("/opinie",
      * name="hotel_opinie")
     *
     * @Template  
@@ -83,7 +118,7 @@ class StartController extends Controller{
     }
     
     /**
-    * @Route("/rejestracja.html",
+    * @Route("/rejestracja",
      * name="hotel_rejestracja")
     *
     * @Template  
@@ -110,7 +145,7 @@ class StartController extends Controller{
     }
     
     /**
-    * @Route("/zaloguj.html",
+    * @Route("/zaloguj",
      * name="hotel_zaloguj")
     *
     * @Template  

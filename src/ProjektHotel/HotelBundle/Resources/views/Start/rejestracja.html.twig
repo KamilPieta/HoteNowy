@@ -24,7 +24,7 @@
 			<div class="top-header">
 				<!----start-logo----->
 				<div class="logo">
-					<a href="index.html"><img src="{{asset('bundles/projekthotelhotel/images/logo.jpg')}}" title="logo" /></a>
+					<a href="{{path('hotel_glowna')}}"><img src="{{asset('bundles/projekthotelhotel/images/logo.jpg')}}" title="logo" /></a>
 				</div>
 				<!----End-logo----->
 				<!----start-social-icons----->
@@ -83,54 +83,36 @@
 				  <div class="contact-form">
 				  	<h3>Rejestracja</h3>
 					
-                                             <form class="form-horizontal" action="" method="post" {{form_enctype(rejestracja)}}>
+                                             <form class="form-horizontal" action="" method="post" {{form_enctype(kontakt)}}>
                             <div class ="form-group">
-                                {{form_label(rejestracja.name,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                {{form_label(kontakt.nick,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                                 
                                 <div class="col-sm-9">
                          
-                                    {{form_widget(rejestracja.name,{'attr': {'class':'form-control'}}) }}
-                                      {{form_errors(rejestracja.name)}}
+                                    {{form_widget(kontakt.nick,{'attr': {'class':'form-control'}}) }}
+                                      {{form_errors(kontakt.nick)}}
            
-                                {{form_label(rejestracja.nick,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-                                
-                           
-                         
-                                    {{form_widget(rejestracja.nick,{'attr': {'class':'form-control'}}) }}
-                                      {{form_errors(rejestracja.nick)}}
-                              
-                            
-                       
+                               
                                         
-                                {{form_label(rejestracja.email,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                {{form_label(kontakt.email,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                
+                                    {{form_widget(kontakt.email,{'attr': {'class':'form-control'}}) }}
+                                      {{form_errors(kontakt.email)}}
+                         
+                                      {{form_label(kontakt.wiadomosc,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                                 
                                 
                          
-                                    {{form_widget(rejestracja.email,{'attr': {'class':'form-control'}}) }}
-                                      {{form_errors(rejestracja.email)}}
-                           
+                                    {{form_widget(kontakt.wiadomosc,{'attr': {'class':'form-control'}}) }}
+                                      {{form_errors(kontakt.wiadomosc)}}
                         
                                 
-                                   <div>
-						   		
-                                {{form_label(rejestracja.rules,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-                                
-                                            
-                                    {{form_widget(rejestracja.rules,{'attr': {'class':'form-control'}}) }}
-                                      {{form_errors(rejestracja.rules)}}
-                             
-                                   </div>
-                                
-                                      <div>
-
-                                    {{form_widget(rejestracja.rules,{'attr': {'class':'form-control'}}) }}
-                                      {{form_errors(rejestracja.rules)}}
-						  </div>
+                            
                    
-                                                   {{form_label(rejestracja.potwierdz,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                                   {{form_label(kontakt.potwierdz,null,{'label_attr': {'class': 'col-sm-3 control-label'}}) }}
 
                          
-                                    {{form_widget(rejestracja.potwierdz,{'attr': {'class':'form-control'}}) }}
+                                    {{form_widget(kontakt.potwierdz,{'attr': {'class':'form-control'}}) }}
                                   
                                                   
                                              </form>    

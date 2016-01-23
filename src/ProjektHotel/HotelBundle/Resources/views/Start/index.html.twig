@@ -34,7 +34,7 @@
 			<div class="top-header">
 				<!----start-logo----->
 				<div class="logo">
-					<a href="index.html"><img src="{{asset('bundles/projekthotelhotel/images/logo.jpg')}}" title="logo" /></a>
+					<a href="{{path('hotel_glowna')}}"><img src="{{asset('bundles/projekthotelhotel/images/logo.jpg')}}" title="logo" /></a>
 				</div>
 				<!----End-logo----->
 				<!----start-social-icons----->
@@ -44,6 +44,8 @@
 						<li><a href="https://twitter.com"><img src="{{asset('bundles/projekthotelhotel/images/twitter.png ')}}" title="twitter" /></a></li>
 						<li><a href="https://google.com"><img src="{{asset('bundles/projekthotelhotel/images/google.png')}}" title="google pluse" /></a></li>
 					</ul>
+                                        <br><br>
+                                                <div class="active"> <a  {% render controller ("FOSUserBundle:Security:login")%}</a></div>
 				</div>
 				<div class="clear"> </div>
 				<!----End-social-icons----->
@@ -58,8 +60,8 @@
                         {'path': 'hotel_promocje', 'name': 'Promocje'},
                         {'path': 'hotel_basen', 'name': 'Basen'},
                         {'path': 'hotel_kontakt', 'name': 'Kontakt'},
-                        {'path': 'hotel_opinie', 'name': 'Opinie'},
-                        {'path': 'hotel_zaloguj', 'name': 'Zaloguj'},
+                        
+                        {'path': 'fos_user_registration_register', 'name': 'Rejestracja'},
                          ]
                            %}  
 			<div class="top-nav">
@@ -73,11 +75,9 @@
 					</ul>
 				</div>
 				<div class="top-nav-right">
-					{# <form>
-						<input type="text"><input type="submit" value="" />
-					</form> #}
-                                        <div class="active"><a href="zaloguj.html">Zaloguj</a></div>
-				</div>
+			  
+                                    {# <div class="active"> <a href="{{path('fos_user_security_login')}}">Zaloguj</a></div>#}
+                                  </div>
 				<div class="clear"> </div>
 			</div>
 			<!---End-top-nav---->

@@ -1,64 +1,105 @@
-<!DOCTYPE html>
-<html lang="pl">
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Z pamiętnika domorosłego inwestora.">
-    <meta name="author" content="Janek Złotówka">
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>HOTEL SIELNKA</title>
+		<link href="{{asset('bundles/projekthotelhotel/css/style.css')}}" rel="stylesheet" type="text/css"  media="all" />
+		<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="{{asset('bundles/projekthotelhotel/css/slider.css')}}" rel="stylesheet" type="text/css"  media="all" />
+		  <script src="{{asset('bundles/projekthotelhotel/js/jquery.min.js')}}"></script>
+		  <script type="text/javascript" src="{{asset('bundles/projekthotelhotel/js/jquery.easing.1.3.js')}}"></script> 
+		    <script type="text/javascript" src="{{asset('bundles/projekthotelhotel/js/camera.min.js')}}"></script>
+			
+                    <script type="text/javascript">
+                                  
+			   jQuery(function(){
+				jQuery('#camera_wrap_1').camera({
+					height: '500px',
+					pagination: false,
+				});
+			});
+		  </script>
+		  <script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+				});
+			});
+		</script>
+	</head>
+	<body>
+	<!----start-wrap----->
+	<div class="wrap">
+		<!----start-header----->
+		<div class="header"  id="top">
+			<!----top-header----->
+			<div class="top-header">
+				<!----start-logo----->
+				<div class="logo">
+					<a href="index.html"><img src="{{asset('bundles/projekthotelhotel/images/logo.jpg')}}" title="logo" /></a>
+				</div>
+				<!----End-logo----->
+				<!----start-social-icons----->
+				<div class="social-icons">
+					<ul>
+						<li><a href="https://facebook.com"><img src="{{asset('bundles/projekthotelhotel/images/facebook.png')}}" title="facebook"/></a></li>
+						<li><a href="https://twitter.com"><img src="{{asset('bundles/projekthotelhotel/images/twitter.png ')}}" title="twitter" /></a></li>
+						<li><a href="https://google.com"><img src="{{asset('bundles/projekthotelhotel/images/google.png')}}" title="google pluse" /></a></li>
+					</ul>
+				</div>
+				<div class="clear"> </div>
+				<!----End-social-icons----->
+			</div>
+			<!----End-top-header----->
+			<!---start-top-nav---->
+                        {%
+                        set mainMenu = [
+                        {'path': 'hotel_glowna', 'name': 'Aktualnosci'},
+                        {'path': 'hotel_galeria', 'name': 'Galeria'},
+                        {'path': 'hotel_cennik', 'name': 'Cennik'},
+                        {'path': 'hotel_promocje', 'name': 'Promocje'},
+                        {'path': 'hotel_basen', 'name': 'Basen'},
+                        {'path': 'hotel_kontakt', 'name': 'Kontakt'},
+                        {'path': 'hotel_opinie', 'name': 'Opinie'},
+                        {'path': 'hotel_zaloguj', 'name': 'Zaloguj'},
+                         ]
+                           %}  
+			<div class="top-nav">
+				<div class="top-nav-left">
+					<ul>
+              
+                                            {% for item in mainMenu%}
+                                                <li {{app.request.get('_route')==item['path'] ? 'class="active"' : ''}}><a href="{{path(item['path'])}}">{{item['name']}}</a></li>
+                                                    {%endfor%}
+                                                 <div class="clear"> </div>
+					</ul>
+				</div>
+				<div class="top-nav-right">
+					{# <form>
+						<input type="text"><input type="submit" value="" />
+					</form> #}
+                                        <div class="active"><a href="zaloguj.html">Zaloguj</a></div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<!---End-top-nav---->
+		</div>
+		<!----End-header----->
+	</div>
+	<!----End-wrap----->
+    {% block content %}
 
-    <title>Hotel Sielanka</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{asset('bundles/projekthotelhotel/css/bootstrap.min.css')}}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-     <link href="{{asset('bundles/projekthotelhotel/css/bootstrap.min.css')}}" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    </head>
-
-    <body>
-        
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-						<li class="active"><a href="index.html">Aktualnosci</a></li>
-						<li><a href="galeria.html">Galeria</a></li>
-						<li><a href="promocje.html">Promocje</a></li>
-						<li><a href="basen.html">Basen</a></li>
-                                                <li><a href="kontakt.html">Kontakt</a></li>
-                    </ul>
-                </div><!--/.navbar-collapse -->
-
-            </div>
-        </div> 
-
-        {% block szablon %} {%endblock%}
-        
-        <div id="footer">
-            <div class="container">
-                <p class="text-muted">&copy; Kamil Pięta IS 2016</p>
-            </div>
-        </div>
-
-        <!-- Bootstrap core JavaScript -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="{{asset('bundles/projekthotelhotel/js/bootstrap.min.js')}}"></script>
-    </body>
+    {% endblock %}
+		
+	
+                 
+           <div class="copy-right">
+		<div class="top-to-page">
+						<a href="#top" class="scroll"> </a>
+						<div class="clear"> </div>
+					</div>
+		<p>Copyright &copy; Autor Kamil Pięta szablon: 2013 Accent Home. All Rights Reserved | Design by&nbsp; <a href="http://w3layouts.com/">w3layouts </a></p>
+	</div>
+		 <!---End-footer---->
+	</body>
 </html>
